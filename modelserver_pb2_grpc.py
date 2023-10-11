@@ -18,12 +18,12 @@ class ModelServerStub(object):
         self.SetCoefs = channel.unary_unary(
                 '/ModelServer/SetCoefs',
                 request_serializer=modelserver__pb2.SetCoefsRequest.SerializeToString,
-                response_deserializer=modelserver__pb2.SetCoefsResp.FromString,
+                response_deserializer=modelserver__pb2.SetCoefsResponse.FromString,
                 )
         self.Predict = channel.unary_unary(
                 '/ModelServer/Predict',
                 request_serializer=modelserver__pb2.PredictRequest.SerializeToString,
-                response_deserializer=modelserver__pb2.PredictResp.FromString,
+                response_deserializer=modelserver__pb2.PredictResponse.FromString,
                 )
 
 
@@ -49,12 +49,12 @@ def add_ModelServerServicer_to_server(servicer, server):
             'SetCoefs': grpc.unary_unary_rpc_method_handler(
                     servicer.SetCoefs,
                     request_deserializer=modelserver__pb2.SetCoefsRequest.FromString,
-                    response_serializer=modelserver__pb2.SetCoefsResp.SerializeToString,
+                    response_serializer=modelserver__pb2.SetCoefsResponse.SerializeToString,
             ),
             'Predict': grpc.unary_unary_rpc_method_handler(
                     servicer.Predict,
                     request_deserializer=modelserver__pb2.PredictRequest.FromString,
-                    response_serializer=modelserver__pb2.PredictResp.SerializeToString,
+                    response_serializer=modelserver__pb2.PredictResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -80,7 +80,7 @@ class ModelServer(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ModelServer/SetCoefs',
             modelserver__pb2.SetCoefsRequest.SerializeToString,
-            modelserver__pb2.SetCoefsResp.FromString,
+            modelserver__pb2.SetCoefsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -97,6 +97,6 @@ class ModelServer(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ModelServer/Predict',
             modelserver__pb2.PredictRequest.SerializeToString,
-            modelserver__pb2.PredictResp.FromString,
+            modelserver__pb2.PredictResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -46,17 +46,17 @@ class ModelServer(modelserver_pb2_grpc.ModelServerServicer):
         try:
             coefs = torch.tensor(request.coefs, dtype=torch.float32).reshape(-1, 1)
             self.cache.SetCoefs(coefs = coefs)
-            return modelserver_pb2.SetCoefsResp(error = "")
+            return modelserver_pb2.SetCoefsResponse(error = "")
         except Exception as e:
-            return modelserver_pb2.SetCoefsResp(error= str(e))
+            return modelserver_pb2.SetCoefsResponse(error= str(e))
 
     def Predict(self, request, context):
         try:
-            X_tensor = torch.tensor(X = equest.X).reshape(1, -1)
+            X_tensor = torch.tensor(X = request.X).reshape(1, -1)
             y, hit = self.cache.Predict(X_tensor)
-            return modelserver_pb2.PredictResp(y= y.item(), hit= hit, error= "")
+            return modelserver_pb2.PredictResponse(y= y.item(), hit= hit, error= "")
         except Exception as e:
-            return modelserver_pb2.PredictResp(y= 0, hit= False, error= str(e))
+            return modelserver_pb2.PredictResponse(y= 0, hit= False, error= str(e))
 
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=4), options=(('grpc.so_reuseport', 0),))
 modelserver_pb2_grpc.add_ModelServerServicer_to_server(ModelServer(), server)

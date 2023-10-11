@@ -6,7 +6,7 @@ message SetCoefsRequest {
     repeated float coefs = 1;
 }
 
-message SetCoefsResp{
+message SetCoefsResponse{
     string error = 1;
 }
 
@@ -14,7 +14,7 @@ message PredictRequest {
     repeated float X = 1;
 }
 
-message PredictResp{
+message PredictResponse{
     float y = 1;
     bool hit = 2;
     string error = 3;
@@ -22,6 +22,6 @@ message PredictResp{
 
 // services (RPC functions)
 service ModelServer {
-    rpc SetCoefs(SetCoefsRequest) returns (SetCoefsResp);
-    rpc Predict(PredictRequest) returns (PredictResp);
+    rpc SetCoefs(SetCoefsRequest) returns (SetCoefsResponse);
+    rpc Predict(PredictRequest) returns (PredictResponse);
 }
