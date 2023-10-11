@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+//messages (protocol buffers, aka "protobus")
+
+message SetCoefsRequest {
+    repeated float coefs = 1;
+}
+
+message SetCoefsResp{
+    string error = 1;
+}
+
+message PredictRequest {
+    repeated float X = 1;
+}
+
+message PredictResp{
+    float y = 1;
+    bool hit = 2;
+    string error = 3;
+}
+
+// services (RPC functions)
+service ModelServer {
+    rpc SetCoefs(SetCoefsRequest) returns (SetCoefsResp);
+    rpc Predict(PredictRequest) returns (PredictResp);
+}
