@@ -48,11 +48,13 @@ class ModelServer(modelserver_pb2_grpc.ModelServerServicer):
             self.cache.SetCoefs(coefs = coefs)
             return modelserver_pb2.SetCoefsResponse(error = "")
         except Exception as e:
+            print('aaa')
             return modelserver_pb2.SetCoefsResponse(error= str(e))
 
     def Predict(self, request, context):
         try:
-            X_tensor = torch.tensor(X = request.X).reshape(1, -1)
+            print((request.X))
+            X_tensor = torch.tensor(request.X).reshape(1, -1)
             y, hit = self.cache.Predict(X_tensor)
             return modelserver_pb2.PredictResponse(y= y.item(), hit= hit, error= "")
         except Exception as e:

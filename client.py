@@ -13,6 +13,7 @@ channel = grpc.insecure_channel("localhost:"+ sys.argv[1])
 stub = modelserver_pb2_grpc.ModelServerStub(channel)
 
 req_coefs = list(map(float, sys.argv[2].split(",")))
+# print(type(req_coefs[0]))
 stub.SetCoefs(modelserver_pb2.SetCoefsRequest(coefs = req_coefs))
 
 c_hit = 0
@@ -25,10 +26,9 @@ def process_thread(csv_file):
     f = open(csv_file,'r')
     lines = f.readlines()
     for line in lines:
-        print(line)
+        # print(line)
         X = list(map(float,line.split(",")))
         resp = stub.Predict(modelserver_pb2.PredictRequest(X=X))
-        print(resp)
         if resp.hit:
             c_hit += 1            
         total += 1
@@ -38,7 +38,6 @@ csv_files = sys.argv[3:]
 threads = []
 
 for csv_file in csv_files:
-    #@@@@@@@@@@@@@@args=(csv_file,) 왜?
     t = threading.Thread(target=process_thread, args=(csv_file,))
     t.start()
     threads.append(t)
