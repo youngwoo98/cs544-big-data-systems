@@ -1,4 +1,4 @@
-# These steps below need to be manually done after cloning
+# These steps below need to be manually done after cloning (copied from p5 description)
 
 ## Cluster Setup
 
