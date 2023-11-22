@@ -21,7 +21,7 @@ class StationServer(station_pb2_grpc.StationServicer):
         self.max_statement = self.cass.prepare("""
         SELECT MAX(record.tmax) FROM stations WHERE id = ?
         """)
-        self.max_statement.consistency_level = ConsistencyLevel.ONE
+        self.max_statement.consistency_level = ConsistencyLevel.ALL
         self.cass.cluster.register_user_type('weather', 'station_record', StationRecord)
     
     def RecordTemps(self, request, context):
@@ -44,14 +44,14 @@ class StationServer(station_pb2_grpc.StationServicer):
             if row:
                 return station_pb2.StationMaxReply(tmax = row[0], error="")
             else:
-                return station_pb2.RecordTempsReply(tmax = 0, error= "No data")
+                return station_pb2.StationMaxReply(tmax = 0, error= "No data")
         except Unavailable as ue:
-            return station_pb2.RecordTempsReply(tmax = 0, error= f'need {ue.required_replicas} replicas, but only have {ue.alive_replicas}')
+            return station_pb2.StationMaxReply(tmax = 0, error= f'need {ue.required_replicas} replicas, but only have {ue.alive_replicas}')
         except NoHostAvailable as ne:
             for evalue in ne.errors.values():
-                return station_pb2.RecordTempsReply(tmax = 0, error= f'need {evalue.required_replicas} replicas, but only have {evalue.alive_replicas}')
+                return station_pb2.StationMaxReply(tmax = 0, error= f'need {evalue.required_replicas} replicas, but only have {evalue.alive_replicas}')
         except Exception as e:
-            return station_pb2.RecordTempsReply(tmax = 0, error=str(e))
+            return station_pb2.StationMaxReply(tmax = 0, error=str(e))
             
 if __name__ == '__main__':
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=4), options=(('grpc.so_reuseport', 0),))
