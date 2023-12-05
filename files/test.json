@@ -1,0 +1,40 @@
+{
+  "score": 45,
+  "full_score": 100,
+  "tests": {
+    "test_all_files_present": "Couldn't find file Dockerfile",
+    "test_p7_image_builds": "Failed to build Dockerfile",
+    "test_p7_image_runs": "PASS (5/5)",
+    "test_producer_configs": [
+      "Traceback (most recent call last):\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/tester.py\", line 38, in run\n    result = self.func()\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/files/../autograde.py\", line 242, in test_producer_configs\n    with open(\"files/producer.py\", \"r\") as f:\n",
+      "FileNotFoundError: [Errno 2] No such file or directory: 'files/producer.py'\n"
+    ],
+    "test_topics_created": "PASS (10/10)",
+    "test_producer_messages": "PASS (10/10)",
+    "test_proto_build": [
+      "Traceback (most recent call last):\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/files/../autograde.py\", line 330, in test_proto_build\n    result = subprocess.run(\n",
+      "  File \"/usr/lib/python3.10/subprocess.py\", line 526, in run\n    raise CalledProcessError(retcode, process.args,\n",
+      "subprocess.CalledProcessError: Command '['python3', '-m', 'grpc_tools.protoc', '-I', './files', '--python_out', '/tmp/_cs544_tester_directory/autograder_files', 'report.proto']' returned non-zero exit status 1.\n",
+      "\nDuring handling of the above exception, another exception occurred:\n\n",
+      "Traceback (most recent call last):\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/tester.py\", line 38, in run\n    result = self.func()\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/files/../autograde.py\", line 346, in test_proto_build\n    raise Exception(\"Failed to compile report.proto:\" + str(e))\n",
+      "Exception: Failed to compile report.proto:Command '['python3', '-m', 'grpc_tools.protoc', '-I', './files', '--python_out', '/tmp/_cs544_tester_directory/autograder_files', 'report.proto']' returned non-zero exit status 1.\n"
+    ],
+    "test_debug_consumer_output": "PASS (10/10)",
+    "test_consumer_runs": "PASS (10/10)",
+    "test_partition_json_creation": "Failed to generate and read /files/partition-0.json from within the container: Command 'docker exec p7-autograder-kafka cat /files/partition-0.json' returned non-zero exit status 1.",
+    "test_partition_json_contents": "Failed to read /files/partition-0.json inside the container.",
+    "test_plot_generation": [
+      "Traceback (most recent call last):\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/tester.py\", line 38, in run\n    result = self.func()\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/files/../autograde.py\", line 486, in test_plot_generation\n    plot_data = read_file_from_docker(\"p7-autograder-kafka\", \"/files/month.svg\")\n",
+      "  File \"/home/ykim846/project-7-failed-to-quit-drinking-alcohol/files/../autograde.py\", line 152, in read_file_from_docker\n    result = subprocess.run(\n",
+      "  File \"/usr/lib/python3.10/subprocess.py\", line 526, in run\n    raise CalledProcessError(retcode, process.args,\n",
+      "subprocess.CalledProcessError: Command 'docker exec p7-autograder-kafka cat /files/month.svg' returned non-zero exit status 1.\n"
+    ]
+  }
+}

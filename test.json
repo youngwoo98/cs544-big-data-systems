@@ -1,8 +1,8 @@
 {
-  "score": 60,
+  "score": 65,
   "full_score": 100,
   "tests": {
-    "test_all_files_present": "Couldn't find file files/plot.py",
+    "test_all_files_present": "PASS (5/5)",
     "test_p7_image_builds": "PASS (5/5)",
     "test_p7_image_runs": "PASS (5/5)",
     "test_producer_configs": "PASS (5/5)",

@@ -29,21 +29,13 @@ time.sleep(3)
 
 print("Topics:", admin_client.list_topics())
 
-# DON'T INCLUDE THE CODE BELOW FOR SUBMISSION
-# Runs infinitely because the weather never ends
-
 producer = KafkaProducer(
     bootstrap_servers=[broker],
     retries=10,
     acks='all'
 )
+
 for date, degrees in weather.get_next_weather(delay_sec=0.1):
     value = Report(date=date, degrees=degrees).SerializeToString()
     producer.send("temperatures", value, bytes(datetime.strptime(date, '%Y-%m-%d').strftime("%B"), "utf-8"))
-    # print(value)
-
     time.sleep(1)
-    # print(datetime.strptime(date, '%Y-%m-%d').strftime("%B"), date)
-#     # print(date, degrees) # date, max_temperature
-#     value = Report(date=date, degrees=degrees).SerializeToString()
-#     producer.send("")

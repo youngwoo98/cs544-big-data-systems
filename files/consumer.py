@@ -35,11 +35,11 @@ def temperature_consumer(partitions=[]):
         for tp, messages in batch.items():
             for msg in messages:
                 r = Report.FromString(msg.value)
-
-                if not msg.key.decode('utf-8') in counts:
-                    counts[msg.key.decode('utf-8')] = 0
-                counts[msg.key.decode('utf-8')] += 1
-        Print(partitions, counts, p)
+            #     if not msg.key.decode('utf-8') in counts:
+            #         counts[msg.key.decode('utf-8')] = 0
+            #     counts[msg.key.decode('utf-8')] += 1
+        
+        Print(partitions, counts)
 # threading.Thread(target=animal_consumer, args=([0,1],)).start()
 # threading.Thread(target=animal_consumer, args=([2,3],)).start()
 
