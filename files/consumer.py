@@ -92,5 +92,5 @@ while True:      # TODO: loop forever
         with open(path2, "w") as f:
             json.dump(data[tp.partition], f)
             os.rename(path2, path)
-    print(data)
+    # print(data)
     # print(counts)
