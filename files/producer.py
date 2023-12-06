@@ -38,4 +38,4 @@ producer = KafkaProducer(
 for date, degrees in weather.get_next_weather(delay_sec=0.1):
     value = Report(date=date, degrees=degrees).SerializeToString()
     producer.send("temperatures", value, bytes(datetime.strptime(date, '%Y-%m-%d').strftime("%B"), "utf-8"))
-    time.sleep(1)
+    # time.sleep(1)
