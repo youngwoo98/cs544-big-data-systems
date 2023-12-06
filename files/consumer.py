@@ -41,7 +41,9 @@ while True:      # TODO: loop forever
     # for p in partitions:
     #     consumer.seek(TopicPartition("temperatures", data[p]['partition']), data[p]['offset'])
     batch = consumer.poll(1000)
+    topic = ''
     for tp, messages in batch.items():
+        topic = tp
         for msg in messages:
             # print(msg.offset)
             # print(tp)
@@ -72,15 +74,23 @@ while True:      # TODO: loop forever
                 data[msg.partition][msg.key.decode('utf-8')][year]['sum'] += r.degrees
                 data[msg.partition][msg.key.decode('utf-8')][year]['avg'] = data[msg.partition][msg.key.decode('utf-8')][year]['sum']/data[msg.partition][msg.key.decode('utf-8')][year]['count']
                 data[msg.partition][msg.key.decode('utf-8')][year]['end'] = r.date
-            
-            
-            if msg == messages[-1]:
-                data[msg.partition]['offset'] = msg.offset
-            p = msg.partition
-            path = f'/files/partition-{p}.json'
-            path2 = path + ".tmp"
-            with open(path2, "w") as f:
-                json.dump(data[p], f)
-                os.rename(path2, path)
-    # print(data[0])
+
+
+
+    # print(topic.partition)
+    # for tp in consumer.assignment():
+    #     print(tp.partition)
+    #     print(consumer.position(tp))
+    # pos = consumer.position('temperatures')
+    # print(consumer.position('temperatures').partition)
+            # if msg == messages[-1]:
+            #     data[msg.partition]['offset'] = msg.offset
+            # p = msg.partition
+        data[tp.partition]['offset'] = consumer.position(tp)
+        path = f'/files/partition-{tp.partition}.json'
+        path2 = path + ".tmp"
+        with open(path2, "w") as f:
+            json.dump(data[tp.partition], f)
+            os.rename(path2, path)
+    print(data)
     # print(counts)
