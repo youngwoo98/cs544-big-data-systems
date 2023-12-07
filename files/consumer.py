@@ -24,7 +24,7 @@ for p in partitions:
             json.dump({
                 "partition": int(p),
                 "offset": 0
-            }, fp)
+            }, fp, indent = 4)
     with open(file, 'r') as fp:
         data[p] = json.load(fp)
         
@@ -90,7 +90,7 @@ while True:      # TODO: loop forever
         path = f'/files/partition-{tp.partition}.json'
         path2 = path + ".tmp"
         with open(path2, "w") as f:
-            json.dump(data[tp.partition], f)
+            json.dump(data[tp.partition], f, indent = 4)
             os.rename(path2, path)
     # print(data)
     # print(counts)
