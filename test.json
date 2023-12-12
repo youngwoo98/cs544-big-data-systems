@@ -1,5 +1,5 @@
 {
-  "score": 70,
+  "score": 90,
   "full_score": 100,
   "tests": {
     "q1": "PASS (10/10)",
@@ -9,8 +9,15 @@
     "q5": "PASS (10/10)",
     "q6": "PASS (10/10)",
     "q7": "PASS (10/10)",
-    "q8": "ERROR: Answer to question 8 not found",
-    "q9": "ERROR: Answer to question 9 not found",
-    "q10": "ERROR: Answer to question 10 not found"
+    "q8": "PASS (10/10)",
+    "q9": "PASS (10/10)",
+    "q10": [
+      "Traceback (most recent call last):\n",
+      "  File \"/home/ykim846/project-8-christmas-song-by-back-number/tester.py\", line 38, in run\n    result = self.func()\n",
+      "  File \"/home/ykim846/project-8-christmas-song-by-back-number/autograde.py\", line 220, in q10\n    output = nbutils.parse_float_output(outputs)\n",
+      "  File \"/home/ykim846/project-8-christmas-song-by-back-number/nbutils.py\", line 15, in parse_float_output\n    return float(parse_str_output(outputs))\n",
+      "  File \"/home/ykim846/project-8-christmas-song-by-back-number/nbutils.py\", line 6, in parse_str_output\n    raise Exception(\"Output not found\")\n",
+      "Exception: Output not found\n"
+    ]
   }
 }
