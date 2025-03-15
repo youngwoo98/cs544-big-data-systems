@@ -91,11 +91,6 @@ Instructions to run each project can be found inside their respective directorie
 
 ---
 
-## 🛠 **Contributions**
-This repository is a collection of personal coursework. If you find any issues or improvements, feel free to open a pull request.
-
----
-
 ## 📜 **License**
 This repository is intended for **personal and educational purposes only**. Please **do not plagiarize** any work if you are currently taking CS 544.
 
