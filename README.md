@@ -99,24 +99,3 @@ This repository is a collection of personal coursework. If you find any issues o
 ## 📜 **License**
 This repository is intended for **personal and educational purposes only**. Please **do not plagiarize** any work if you are currently taking CS 544.
 
----
-
-### **Happy Coding! 🚀**
-```
-
----
-
-### **Customizations You Can Make**
-1. **Update Your GitHub Username:**  
-   Replace `yourusername` in:
-   ```md
-   git clone https://github.com/yourusername/cs544-big-data-systems.git
-   ```
-   with your actual GitHub username.
-
-2. **Add More Details for Each Project:**  
-   If you have more specific details about implementations (e.g., Python vs. Java, datasets used, or benchmarks), you can expand on them.
-
-3. **Include Sample Commands for Running Each Project:**  
-   If each project has a standard way to run it, you can add specific `python` or `spark-submit` commands.
-
