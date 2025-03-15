@@ -1,0 +1,6 @@
+README.md
+*.zip
+*.csv
+build.sh
+autograde.py
+
